@@ -17,7 +17,7 @@ if (Meteor.isClient) {
     },
     lots: function(){
       console.log("hello");
-      return Lots.find({status: "unres", time: { $gte: 16 }});
+      return Lots.find({time: { $gte: 16 }});
     },
     noLots: function(){
       return "No Lots are avaliable at this time. Check back at 4 pm";
@@ -41,6 +41,28 @@ if (Meteor.isClient) {
       event.preventDefault();
       var time = document.getElementById("time").value;
       Meteor.call("returnTime", time);
+    }
+  });
+
+  Template.lotsList.helpers({
+    weekendCheck: function(weekend){
+      var day = 3;//new Date().getDay();
+      if (day == 6 || day == 0) { //if it's the weekend
+        if (weekend) { //and the lot is avaliable during the weekend
+          return true;
+        } else {
+          return false;
+        }
+      } else { //if it's not the weekend that is the standard so continue as usual
+        return true;
+      }
+    },
+    unresStatus: function(status){
+      if (status == "unres") {
+        return true;
+      } else {
+        return false;
+      }
     }
   });
 }
