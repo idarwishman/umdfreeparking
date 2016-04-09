@@ -33,7 +33,7 @@
 </template>
 
 <template name="lotsList">
-  <div class="panel panel-primary">
+  <div class="panel panel-{{#if student}}success{{else}}primary{{/if}}">
   <div class="panel-heading">
     <h3 class="panel-title">Lot {{lot}}</h3>
   </div>
