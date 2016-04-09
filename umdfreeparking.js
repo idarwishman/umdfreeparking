@@ -23,7 +23,7 @@ if (Meteor.isClient) {
       return "No Lots are avaliable at this time. Check back at 4 pm";
     },
     timeCheck: function(){
-      var hour = 17;//new Date().getHours();
+      var hour = new Date().getHours();
       if (hour >= 16 || hour <= 7) {
         return true;
       } else {
@@ -107,7 +107,7 @@ if (Meteor.isClient) {
 
   Template.lotsList.helpers({
     weekendCheck: function(weekend){
-      var day = 3;//new Date().getDay();
+      var day = new Date().getDay();
       if (day == 6 || day == 0) { //if it's the weekend
         if (weekend) { //and the lot is avaliable during the weekend
           return true;
