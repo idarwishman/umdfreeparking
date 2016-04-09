@@ -3,30 +3,34 @@
 </head>
 
 <body>
-  <h1>Welcome to UMD Free Parking!</h1>
+  <center><h1>Welcome to UMD Free Parking!</h1></center>
 
   {{> hello}}
 </body>
 
 <template name="hello">
-  <p>The free spots avaliable now are:</p>
-  <form>
-    What time is it?<br>
-    <input type="text" name="time" id="time"><br>
-    <button type="button" class="btn btn-default">Click me!</button>
-  </form>
-  <p> You said it's {{time}} </p>
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-6">
+        The free spots avaliable NOW are: <br><br>
         {{#if timeCheck}}
-          {{lotsNow}}
           {{#each lots}}
             {{> lotsList}}
           {{/each}}
         {{else}}
-          {{noLots}}
+          <br>{{noLots}}
         {{/if}}
+      </div>
+      <div class="col-lg-6">
+        <form>
+          Check at certain time (Enter hour, pm/am and Day - Su M Tu W Th F Sa)<br>
+          <input type="text" name="time" id="time" placeholder="8pmTh">
+          <button type="button" class="btn btn-default">Click me!</button>
+        </form>
+        <p> You said it's {{time}} </p>
+        {{#each specificLots time}}
+          {{> lotsList}}
+        {{/each}}
       </div>
     </div>
   </div>
@@ -40,8 +44,10 @@
     </div>
     <div class="panel-body">
       <p>Avaliable from {{#if unresStatus status}}4pm{{else}}8pm{{/if}} to 7am</p>
+      {{#if unresStatus status}}<p>Avaliable all-day long on weekends</p>{{/if}}
       {{#unless unresStatus status}}<p><b>DO NOT PARK ON WEEKENDS</b></p>{{/unless}}
-      {{#if student}}<p><b>DO NOT PARK FROM 3 am to 5 am</b></p>{{/if}}
+      {{#if student}}<p><b>DO NOT PARK FROM 3 am to 5 am EXCEPT weekends</b></p>{{/if}}
+      <p>Closest Building: {{closestBuilding}}</p>
       <p><a href="{{href}}">Click here for directions</a></p>
     </div>
   </div>
