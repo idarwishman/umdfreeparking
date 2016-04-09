@@ -1,0 +1,46 @@
+<head>
+  <title>umdfreeparking</title>
+</head>
+
+<body>
+  <h1>Welcome to UMD Free Parking!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <p>The free spots avaliable now are:</p>
+  <form>
+    What time is it?<br>
+    <input type="text" name="time" id="time"><br>
+    <button type="button" class="btn btn-default">Click me!</button>
+  </form>
+  <p> You said it's {{time}} </p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        {{#if timeCheck}}
+          {{lotsNow}}
+          {{#each lots}}
+            {{> lotsList}}
+          {{/each}}
+        {{else}}
+          {{noLots}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="lotsList">
+  <div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">Lot {{lot}}</h3>
+  </div>
+  <div class="panel-body">
+    <p>Avaliable from 4pm to 7am</p>
+    <p><b>DO NOT PARK FROM 3 am to 5 am</b></p>
+    <p><a href="{{href}}">Click here for directions</a></p>
+  </div>
+</div>
+</template>
