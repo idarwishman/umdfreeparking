@@ -1,5 +1,5 @@
 //Databases
-Lots = new Mongo.Collection('lots');
+Lots = new Mongo.Collection('Lots');
 
 if (Meteor.isClient) {
   Meteor.subscribe("lots");
@@ -118,6 +118,16 @@ if (Meteor.isClient) {
         return true;
       }
     },
+    unresStatus: function(status){
+      if (status == "unres") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  });
+
+  Template.specificLotsList.helpers({
     unresStatus: function(status){
       if (status == "unres") {
         return true;

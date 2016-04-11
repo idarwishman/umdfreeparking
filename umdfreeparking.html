@@ -28,7 +28,7 @@
           <button type="button" class="btn btn-default">Click me!</button>
         </form>
         {{#each specificLots time}}
-          {{> lotsList}}
+          {{> specificLotsList}}
         {{/each}}
       </div>
     </div>
@@ -47,8 +47,24 @@
       {{#unless unresStatus status}}<p><b>DO NOT PARK ON WEEKENDS</b></p>{{/unless}}
       {{#if student}}<p><b>DO NOT PARK FROM 3 am to 5 am EXCEPT weekends</b></p>{{/if}}
       <p>Closest Building: {{closestBuilding}}</p>
-      <p><a href="{{href}}">Click here for directions</a></p>
+      {{#if href}}<p><a href="{{href}}">Click here for directions</a></p>{{/if}}
     </div>
   </div>
 {{/if}}
+</template>
+
+<template name="specificLotsList">
+  <div class="panel panel-{{#if student}}success{{else}}primary{{/if}}">
+    <div class="panel-heading">
+      <h3 class="panel-title">Lot {{lot}}</h3>
+    </div>
+    <div class="panel-body">
+      <p>Avaliable from {{#if unresStatus status}}4pm{{else}}8pm{{/if}} to 7am</p>
+      {{#if unresStatus status}}<p>Avaliable all-day long on weekends</p>{{/if}}
+      {{#unless unresStatus status}}<p><b>DO NOT PARK ON WEEKENDS</b></p>{{/unless}}
+      {{#if student}}<p><b>DO NOT PARK FROM 3 am to 5 am EXCEPT weekends</b></p>{{/if}}
+      {{#if closestBuilding}}<p>Closest Building: {{closestBuilding}}</p>{{/if}}
+      {{#if href}}<p><a href="{{href}}">Click here for directions</a></p>{{/if}}
+    </div>
+  </div>
 </template>
