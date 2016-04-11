@@ -1,0 +1,11 @@
+{
+  "kadira": {
+    "appId": "TZeCaxdh3pSmtuhyv",
+    "appSecret": "0aec79f6-793b-4ce8-b70e-be9db1718611"
+  },
+  "public": {
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "UA-69522028-1"}
+    }
+  }
+}
